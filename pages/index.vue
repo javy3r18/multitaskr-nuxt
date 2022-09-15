@@ -1,44 +1,42 @@
 <template>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>pokemon</th>
-                <th>url</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(pokemon, index) in pokemons.results">
-                <td>{{index}}</td>
-                <td>{{pokemon.name}}</td>
-                <td><nuxt-link :to="`/${pokemon.name}`">click me</nuxt-link></td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <div>
+            <b-table striped hover :items="pokemons.results" :fields="fields">
+                <template #cell(url)="data">
+                    <nuxt-link
+                        tag="button"
+                        class="btn btn-primary"
+                        :to="`/${data.item.name}`"
+                        >Show abilities</nuxt-link
+                    >
+                </template>
+            </b-table>
+        </div>
+        
+    </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-
     data() {
         return {
-
-        }
+            
+        };
     },
 
-    mounted(){
-        console.log(this.$store.state)
+    mounted() {
+        console.log(this.$store.state);
     },
 
     async fetch({ store }) {
-        await store.dispatch('pokemons/get')
+        await store.dispatch("pokemons/get");
     },
 
     computed: {
         ...mapGetters({
-            pokemons: 'pokemons/items'
-        })
-    }
-}
+            pokemons: "pokemons/items",
+        }),
+    },
+};
 </script>
