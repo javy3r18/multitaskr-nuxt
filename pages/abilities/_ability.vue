@@ -1,6 +1,11 @@
 <template>
 
-    <pre>{{ability}}</pre>
+    
+    <b-container>
+        
+        <b-table striped hover :items="ability.effect_entries">
+        </b-table>
+    </b-container>
 
 </template>
 

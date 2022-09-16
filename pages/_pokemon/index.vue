@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <b-container>
         <b-card :title="pokemon.name" sub-title="Abilities">
             <nuxt-link
                 v-for="ability in pokemon.abilities"
@@ -9,7 +9,7 @@
                 <br />
             </nuxt-link>
         </b-card>
-    </div>
+    </b-container>
 </template>
 
 <script>

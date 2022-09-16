@@ -1,20 +1,13 @@
 <template>
-     <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>ability</th>
-                <th>url</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(ability, index) in abilities.results">
-                <td>{{index}}</td>
-                <td>{{ability.name}}</td>
-                <td><nuxt-link :to="`/abilities/${ability.name}`">click me</nuxt-link></td>
-            </tr>
-        </tbody>
-    </table>
+    <b-container>
+        <b-table striped hover :items="abilities.results">
+            <template #cell(url)="data">
+                <nuxt-link tag="button" class="btn btn-primary" :to="`abilities/${data.item.name}`">Open ability object</nuxt-link>
+            </template>
+        </b-table>
+
+    </b-container>
+     
 </template>
 
 <script>
