@@ -9,6 +9,10 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item to="/abilities">Abilities</b-nav-item>
+            <b-nav-item to="/moves">Moves</b-nav-item>
+            <b-nav-item to="/pokeitems">Items</b-nav-item>
+            <b-nav-item to="/locations">Locations</b-nav-item>
+            <b-nav-item to="/users/create">Users</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-container>

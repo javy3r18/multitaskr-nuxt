@@ -3,7 +3,7 @@
     <b-container>
         <b-row class="py-3">
         </b-row>
-        <Pagination></Pagination>
+        <Pagination v-model="loading" :key="$route.fullPath" :items="pokemons"></Pagination>
         <b-table striped hover :items="pokemons.results">
             <template #cell(url)="data">
                 <nuxt-link tag="button" class="btn btn-primary" :to="`/${data.item.name}`">Show abilities</nuxt-link>
@@ -29,13 +29,12 @@ export default {
         '$route.query': {
             deep: true,
             async handler(value) {
-                this.loading = true;
-                await this.$store.dispatch("pokemons/get", value);
-                this.loading = false;
+                    await this.$store.dispatch("pokemons/get", value);
+                    this.loading = false
             }
         },
 
-        
+
     },
     computed: {
         ...mapGetters({
@@ -43,7 +42,7 @@ export default {
         }),
     },
 
-   
+
 
 };
 </script>

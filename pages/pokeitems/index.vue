@@ -1,11 +1,11 @@
 <template>
     <b-container>
 
-        <pagination v-model="loading" :key="$route.fullPath" :items="abilities"></pagination>
+        <pagination v-model="loading" :key="$route.fullPath" :items="pokeitems"></pagination>
 
-        <b-table striped hover :items="abilities.results">
+        <b-table striped hover :items="pokeitems.results">
             <template #cell(url)="data">
-                <nuxt-link tag="button" class="btn btn-primary" :to="`abilities/${data.item.name}`">Open ability object
+                <nuxt-link tag="button" class="btn btn-primary" :to="`pokeitems/${data.item.name}`">Open item object
                 </nuxt-link>
             </template>
         </b-table>
@@ -20,7 +20,7 @@ import { mapGetters } from 'vuex';
 
 export default {
     async fetch({ store }) {
-        await store.dispatch('abilities/get')
+        await store.dispatch('pokeitems/get')
     },
 
     data() {
@@ -32,7 +32,7 @@ export default {
         '$route.query': {
             deep: true,
             async handler(value) {
-                await this.$store.dispatch("abilities/get", value);
+                await this.$store.dispatch("pokeitems/get", value);
                 this.loading = false;
             }
         },
@@ -41,7 +41,7 @@ export default {
 
     computed: {
         ...mapGetters({
-            abilities: 'abilities/items'
+            pokeitems: 'pokeitems/items'
         })
     },
 

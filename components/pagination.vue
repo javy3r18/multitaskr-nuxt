@@ -1,7 +1,6 @@
 <template>
-
+    
     <div>
-
         <b-row class="py-3">
             <b-col cols="8">
                 <b-form-input v-model="search" type="search" placeholder="Search" required></b-form-input>
@@ -13,7 +12,7 @@
                 <b-button-group>
                     <b-button :disabled="loading || form.offset == 0" @click="form.offset -= form.limit">Previous
                     </b-button>
-                    <b-button :disabled="loading || form.offset + form.limit >= form.count"
+                    <b-button :disabled="loading || form.offset + form.limit >= item.count"
                         @click="form.offset += form.limit">Next</b-button>
                 </b-button-group>
             </b-col>
@@ -24,8 +23,10 @@
 </template>
 
 <script>
-import {debounce} from "lodash";
+import { debounce } from "lodash";
 export default {
+
+    props: ['value','items'],
 
     data() {
         let query = this.$route.query;
@@ -34,20 +35,23 @@ export default {
                 limit: query.limit ? parseInt(query.limit) : 20,
                 offset: query.offset ? parseInt(query.offset) : 0,
                 search: query.search ?? null,
-                count: 888
             },
             search: null,
-            loading: false
+            item: this.items,
         };
+    },
+
+    computed: {
+        //Al iniciar el data setea el value como false pero no se puede volver a setar ya que el data solo corre una vez cuando se carga la pagina (por eso se usa computed)
+        loading: ({value})=>value
     },
 
     watch: {
         form: {
             deep: true,
             handler(value, old) {
-                this.loading = true;
+                this.$emit('input', true)
                 this.$router.push({ query: value });
-                this.loading  = false;
             }
         },
 
