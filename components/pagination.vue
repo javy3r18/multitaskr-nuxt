@@ -4,7 +4,7 @@
 
         <b-row class="py-3">
             <b-col cols="8">
-                <b-form-input v-model="form.search" type="search" placeholder="Search" required></b-form-input>
+                <b-form-input v-model="search" type="search" placeholder="Search" required></b-form-input>
             </b-col>
             <b-col>
                 <b-form-select v-model="form.limit" :options="[20, 40, 60, 80 ,100]"></b-form-select>
@@ -34,8 +34,9 @@ export default {
                 limit: query.limit ? parseInt(query.limit) : 20,
                 offset: query.offset ? parseInt(query.offset) : 0,
                 search: query.search ?? null,
-                count: 0
+                count: 888
             },
+            search: null,
             loading: false
         };
     },
@@ -44,7 +45,9 @@ export default {
         form: {
             deep: true,
             handler(value, old) {
+                this.loading = true;
                 this.$router.push({ query: value });
+                this.loading  = false;
             }
         },
 
