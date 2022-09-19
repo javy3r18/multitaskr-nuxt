@@ -4,7 +4,8 @@
         <p>Make sure your info is complete so you can download your report</p>
         <form @submit.prevent="onSubmit">
 
-            <b-form-group label="First name:" label-for="name">
+            <b-row cols="6" class="py-3">
+                <b-form-group label="First name:" label-for="name">
                 <b-form-input :state="hasError('name')" id="name" v-model="form.name" placeholder="First name"></b-form-input>
                 <b-form-invalid-feedback v-for="error in errors.name">{{error}}</b-form-invalid-feedback>
             </b-form-group>
@@ -13,8 +14,10 @@
                 <b-form-input :state="hasError('last_name')" id="last_name" v-model="form.last_name" placeholder="Last name"></b-form-input>
                 <b-form-invalid-feedback v-for="error in errors.last_name">{{error}}</b-form-invalid-feedback>
             </b-form-group>
+            </b-row>
 
-            <b-form-group label="Email:" label-for="email">
+            <b-row cols="6" >
+                <b-form-group label="Email:" label-for="email">
                 <b-form-input :state="hasError('email')" id="email" v-model="form.last_name" placeholder="Email"></b-form-input>
                 <b-form-invalid-feedback v-for="error in errors.email">{{error}}</b-form-invalid-feedback>
             </b-form-group>
@@ -23,6 +26,11 @@
                 <b-form-input :state="hasError('phone')" id="phone" v-model="form.last_name" placeholder="Phone"></b-form-input>
                 <b-form-invalid-feedback v-for="error in errors.phone">{{error}}</b-form-invalid-feedback>
             </b-form-group>
+
+            </b-row>
+            
+
+            
 
             <b-button type="submit" variant="primary">Submit</b-button>
             <pre>{{errors}}</pre>
