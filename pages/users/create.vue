@@ -8,33 +8,20 @@
 
                 <b-col cols="6">
                     <b-form-group label="First name:" label-for="name">
-                    <b-form-input
-                        :state="hasError('name')"
-                        id="name"
-                        v-model="form.name"
-                        placeholder="Enter first name"
-                    ></b-form-input>
-                    <b-form-invalid-feedback v-for="error in errors.name">{{
+                        <b-form-input :state="hasError('name')" id="name" v-model="form.name"
+                            placeholder="Enter first name"></b-form-input>
+                        <b-form-invalid-feedback v-for="error in errors.name">{{
                         error
-                    }}</b-form-invalid-feedback>
-                </b-form-group>   
+                        }}</b-form-invalid-feedback>
+                    </b-form-group>
                 </b-col>
-
-                for(int i = 0; i<10; i++)
 
                 <b-col cols="6">
                     <b-form-group label="Last name:" label-for="last_name">
-                    <b-form-input
-                        :state="hasError('last_name')"
-                        id="last_name"
-                        v-model="form.last_name"
-                        placeholder="Enter last name"
-                    ></b-form-input>
-                    <b-form-invalid-feedback
-                        v-for="error in errors.last_name"
-                        >{{ error }}</b-form-invalid-feedback
-                    >
-                </b-form-group>
+                        <b-form-input :state="hasError('last_name')" id="last_name" v-model="form.last_name"
+                            placeholder="Enter last name"></b-form-input>
+                        <b-form-invalid-feedback v-for="error in errors.last_name">{{ error }}</b-form-invalid-feedback>
+                    </b-form-group>
                 </b-col>
 
             </b-row>
@@ -43,32 +30,24 @@
 
                 <b-col cols="6">
                     <b-form-group label="Email:" label-for="email">
-                    <b-form-input
-                        :state="hasError('email')"
-                        id="email"
-                        v-model="form.email"
-                        placeholder="Enter email"
-                    ></b-form-input>
-                    <b-form-invalid-feedback v-for="error in errors.email">{{
+                        <b-form-input :state="hasError('email')" id="email" v-model="form.email"
+                            placeholder="Enter email"></b-form-input>
+                        <b-form-invalid-feedback v-for="error in errors.email">{{
                         error
-                    }}</b-form-invalid-feedback>
-                </b-form-group>
+                        }}</b-form-invalid-feedback>
+                    </b-form-group>
                 </b-col>
 
                 <b-col cols="6">
                     <b-form-group label="Phone number:" label-for="phone">
-                    <b-form-input
-                        :state="hasError('phone')"
-                        id="phone"
-                        v-model="form.phone"
-                        placeholder="Enter phone number"
-                    ></b-form-input>
-                    <b-form-invalid-feedback v-for="error in errors.phone">{{
+                        <b-form-input :state="hasError('phone')" id="phone" v-model="form.phone"
+                            placeholder="Enter phone number"></b-form-input>
+                        <b-form-invalid-feedback v-for="error in errors.phone">{{
                         error
-                    }}</b-form-invalid-feedback>
-                </b-form-group>
+                        }}</b-form-invalid-feedback>    
+                    </b-form-group>
                 </b-col>
-            
+
             </b-row>
 
             <b-button type="submit" variant="primary">Submit</b-button>

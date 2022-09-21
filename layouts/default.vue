@@ -13,6 +13,7 @@
             <b-nav-item to="/pokeitems">Items</b-nav-item>
             <b-nav-item to="/locations">Locations</b-nav-item>
             <b-nav-item to="/users/create">Users</b-nav-item>
+            <b-nav-item to="/users/avatar">Avatar</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-container>
