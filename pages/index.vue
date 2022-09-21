@@ -1,8 +1,6 @@
 <template>
 
     <b-container>
-        <b-row class="py-3">
-        </b-row>
         <Pagination v-model="loading" :key="$route.fullPath" :items="pokemons"></Pagination>
         <b-table striped hover :items="pokemons.results">
             <template #cell(url)="data">

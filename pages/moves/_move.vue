@@ -1,6 +1,6 @@
 <template>    
     <b-container>
-        <b-table striped hover :items="move.contest_combos.normal.use_before">
+        <b-table striped hover :items="move.accuracy">
         </b-table>
     </b-container>
 </template>
