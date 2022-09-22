@@ -12,7 +12,14 @@
                 </b-col>
 
             </b-row>
-            <img v-for="image in images" class="w-25" :src="image" alt="">
+            <b-button v-if="this.images != 0" @click="onClickRemoveAll" variant="danger">Remove All</b-button>
+            <b-row>
+                <b-col class="py-2" v-for="image in images" cols="4">
+                    <img v-if="image" :src="image" class="w-100" alt="">
+                    <b-button @click="onClickRemove(images.indexOf(image))" squared class="w-100" variant="secondary">Remove</b-button>
+                </b-col>
+            </b-row>
+           
             <b-button type="submit" variant="primary">Submit</b-button>
 
         </form>
@@ -50,7 +57,6 @@ export default {
         },
 
         onFileChange(event) {
-            console.log(event)
             let files = event.target.files;
             for (let i = 0; i < files.length; i++) {
                 this.images.push(URL.createObjectURL(files[i]))
@@ -58,6 +64,18 @@ export default {
             // event.target.files.forEach(function(file) {
             //     this.images.push(URL.createObjectURL(file))
             // })
+        },
+
+        onClickRemove(index){
+                this.images.splice(index, 1);
+                if(this.images == 0){
+                    this.form.file = []
+                }
+        },
+
+        onClickRemoveAll(){
+            this.images = []
+            this.form.file = []
         },
 
         hasError(property) {
