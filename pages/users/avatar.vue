@@ -7,7 +7,7 @@
             <b-row class="py-3">
 
                 <b-col cols="6">
-                    <b-form-file :multiple="true" @change="onFileChange" v-model="form.file" class="mt-3" plain>
+                    <b-form-file :multiple="true" @change="onFileChange" v-model="form.file" class="mt-3">
                     </b-form-file>
                 </b-col>
 
@@ -57,6 +57,8 @@ export default {
         },
 
         onFileChange(event) {
+            console.log(event)
+            this.images = []
             let files = event.target.files;
             for (let i = 0; i < files.length; i++) {
                 this.images.push(URL.createObjectURL(files[i]))
@@ -68,6 +70,8 @@ export default {
 
         onClickRemove(index){
                 this.images.splice(index, 1);
+                this.form.file.splice(index, 1)
+                console.log(this.form.file);
                 if(this.images == 0){
                     this.form.file = []
                 }
