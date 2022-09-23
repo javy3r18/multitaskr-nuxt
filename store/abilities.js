@@ -22,8 +22,10 @@ export const mutations = {
 }
 
 export const actions = {
-    async get({commit}){
-        let response = await this.$axios.get('https://pokeapi.co/api/v2/ability/');
+    async get({commit}, params){
+        let response = await this.$axios.get('https://pokeapi.co/api/v2/ability/', {
+            params: params
+        });
         commit('items', response.data);
     },
 

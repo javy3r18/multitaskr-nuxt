@@ -3,12 +3,12 @@ export const state = () => ({
         results: []
     },
 
-    pokemon: null
+    move: null
 })
 
 export const getters = {
     items:state=> state.items,
-    pokemon:state=> state.pokemon
+    move:state=> state.move
 }
 
 export const mutations = {
@@ -16,22 +16,21 @@ export const mutations = {
         state.items = data;
     },
 
-    pokemon(state, data){
-        state.pokemon = data;
+    move(state, data){
+        state.move = data;
     }
 }
 
 export const actions = {
     async get({commit}, params){
-        // let query = Object.keys(params).map(key => key+'='+ params[key]).join('&')
-        let response = await this.$axios.get('https://pokeapi.co/api/v2/pokemon', {
+        let response = await this.$axios.get('https://pokeapi.co/api/v2/move/', {
             params: params
         });
         commit('items', response.data);
     },
 
     async find({commit}, name){
-        let response = await this.$axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        commit('pokemon', response.data);
+        let response = await this.$axios.get(`https://pokeapi.co/api/v2/move/${name}`);
+        commit('move', response.data);
     }
 }

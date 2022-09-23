@@ -1,44 +1,48 @@
 <template>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>pokemon</th>
-                <th>url</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(pokemon, index) in pokemons.results">
-                <td>{{index}}</td>
-                <td>{{pokemon.name}}</td>
-                <td><nuxt-link :to="`/${pokemon.name}`">click me</nuxt-link></td>
-            </tr>
-        </tbody>
-    </table>
+
+    <b-container>
+        <Pagination v-model="loading" :key="$route.fullPath" :items="pokemons"></Pagination>
+        <b-table striped hover :items="pokemons.results">
+            <template #cell(url)="data">
+                <nuxt-link tag="button" class="btn btn-primary" :to="`/${data.item.name}`">Show abilities</nuxt-link>
+            </template>
+        </b-table>
+    </b-container>
+
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
+
 export default {
 
+    middleware: 'auth',
+    async fetch({ store, route }) {
+        await store.dispatch("pokemons/get", route.query);
+    },
     data() {
         return {
-
-        }
+            loading: false
+        };
     },
+    watch: {
+        '$route.query': {
+            deep: true,
+            async handler(value) {
+                    await this.$store.dispatch("pokemons/get", value);
+                    this.loading = false
+            }
+        },
 
-    mounted(){
-        console.log(this.$store.state)
+
     },
-
-    async fetch({ store }) {
-        await store.dispatch('pokemons/get')
-    },
-
     computed: {
         ...mapGetters({
-            pokemons: 'pokemons/items'
-        })
-    }
-}
+            pokemons: "pokemons/items",
+        }),
+    },
+
+
+
+};
 </script>
