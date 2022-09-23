@@ -12,18 +12,28 @@
                 </b-col>
 
             </b-row>
-            <b-button v-if="this.images != 0" @click="onClickRemoveAll" variant="danger">Remove All</b-button>
             <b-row>
                 <b-col class="py-2" v-for="image in images" cols="4">
                     <b-card>
-                    <img v-if="image" :src="image" class="w-100" alt="">
-                    <p>{{images_name[images.indexOf(image)].name}}</p>
-                    <b-button @click="onClickRemove(images.indexOf(image))" squared class="w-100" variant="secondary">Remove</b-button>
+                        <img v-if="image" :src="image" class="w-100" alt="">
+                        <b-card-text>
+                            <p>Name: {{image_data[images.indexOf(image)].name}}</p>
+                        </b-card-text>
+                        <b-card-text>
+                            <p>Size: {{image_data[images.indexOf(image)].size}}</p>
+                        </b-card-text>
+                        <b-card-text>
+                            <p>Type: {{image_data[images.indexOf(image)].type}}</p>
+                        </b-card-text>
+                        
+                        <b-button @click="onClickRemove(images.indexOf(image))" squared class="w-100"
+                        variant="secondary">Remove</b-button>
                     </b-card>
                 </b-col>
             </b-row>
-           
+            
             <b-button type="submit" variant="primary">Submit</b-button>
+            <b-button v-if="this.images != 0" @click="onClickRemoveAll" variant="danger">Remove All</b-button>
 
         </form>
     </b-container>
@@ -34,7 +44,7 @@ export default {
     data() {
         return {
             images: [],
-            images_name: [],
+            image_data: [],
             form: {
                 file: []
             },
@@ -46,7 +56,7 @@ export default {
         async onSubmit(event) {
             console.log(this.form.file)
             let formData = new FormData();
-            this.form.file.forEach(element=> {
+            this.form.file.forEach(element => {
                 console.log(element)
                 formData.append("image[]", element, element.name);
             });
@@ -64,7 +74,8 @@ export default {
             console.log(event)
             this.images = []
             let files = event.target.files;
-            this.images_name = event.target.files;
+            console.log(files)
+            this.image_data = event.target.files;
             for (let i = 0; i < files.length; i++) {
                 this.images.push(URL.createObjectURL(files[i]))
             }
@@ -73,16 +84,16 @@ export default {
             // })
         },
 
-        onClickRemove(index){
-                this.images.splice(index, 1);
-                this.form.file.splice(index, 1)
-                console.log(this.form.file);
-                if(this.images == 0){
-                    this.form.file = []
-                }
+        onClickRemove(index) {
+            this.images.splice(index, 1);
+            this.form.file.splice(index, 1)
+            console.log(this.form.file);
+            if (this.images == 0) {
+                this.form.file = []
+            }
         },
 
-        onClickRemoveAll(){
+        onClickRemoveAll() {
             this.images = []
             this.form.file = []
         },
