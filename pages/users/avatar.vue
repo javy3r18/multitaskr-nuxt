@@ -16,6 +16,7 @@
             <b-row>
                 <b-col class="py-2" v-for="image in images" cols="4">
                     <img v-if="image" :src="image" class="w-100" alt="">
+                    <p>{{images_name[images.indexOf(image)].name}}</p>
                     <b-button @click="onClickRemove(images.indexOf(image))" squared class="w-100" variant="secondary">Remove</b-button>
                 </b-col>
             </b-row>
@@ -31,6 +32,7 @@ export default {
     data() {
         return {
             images: [],
+            images_name: [],
             form: {
                 file: []
             },
@@ -60,6 +62,7 @@ export default {
             console.log(event)
             this.images = []
             let files = event.target.files;
+            this.images_name = event.target.files;
             for (let i = 0; i < files.length; i++) {
                 this.images.push(URL.createObjectURL(files[i]))
             }
