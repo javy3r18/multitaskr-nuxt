@@ -25,6 +25,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/mixins.js',
+    '~/plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -34,11 +36,28 @@ export default {
   buildModules: [
   ],
 
+
+
+
+  auth: {
+    // Options
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'https://develop.gomultitaskr.com/sso/oauth/token', method: 'post', propertyName: 'access_token' },
+          logout: { url: 'https://develop.gomultitaskr.com/sso/oauth/logout', method: 'post', propertyName: 'access_token' },
+          user: { url: 'https://develop.gomultitaskr.com/sso/account', method: 'get', propertyName: 'data' }
+        }
+      }
+    }
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

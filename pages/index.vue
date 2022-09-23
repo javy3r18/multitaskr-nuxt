@@ -15,6 +15,8 @@
 import { mapGetters } from "vuex";
 
 export default {
+
+    middleware: 'auth',
     async fetch({ store, route }) {
         await store.dispatch("pokemons/get", route.query);
     },
