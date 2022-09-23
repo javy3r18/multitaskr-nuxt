@@ -15,9 +15,11 @@
             <b-button v-if="this.images != 0" @click="onClickRemoveAll" variant="danger">Remove All</b-button>
             <b-row>
                 <b-col class="py-2" v-for="image in images" cols="4">
+                    <b-card>
                     <img v-if="image" :src="image" class="w-100" alt="">
                     <p>{{images_name[images.indexOf(image)].name}}</p>
                     <b-button @click="onClickRemove(images.indexOf(image))" squared class="w-100" variant="secondary">Remove</b-button>
+                    </b-card>
                 </b-col>
             </b-row>
            
