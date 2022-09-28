@@ -23,7 +23,7 @@
                     <b-form-group label="Password:" label-for="password">
                         <b-form-input type="password" :state="hasError('password')" id="password" v-model="form.password"
                             placeholder="Enter password"></b-form-input>
-                        <b-form-invalid-feedback v-for="error in errors.phone">{{
+                        <b-form-invalid-feedback v-for="error in errors.password">{{
                         error
                         }}</b-form-invalid-feedback>    
                     </b-form-group>

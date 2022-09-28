@@ -14,6 +14,7 @@
             <b-nav-item to="/locations">Locations</b-nav-item>
             <b-nav-item to="/users/create">Users</b-nav-item>
             <b-nav-item to="/users/avatar">Avatar</b-nav-item>
+            <b-nav-item to="/users/profile">Profile</b-nav-item>
             <b-nav-item to="/users/avatar">{{user.email}}</b-nav-item>
           </b-navbar-nav>
         </b-collapse>

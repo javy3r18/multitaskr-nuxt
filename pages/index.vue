@@ -7,6 +7,7 @@
                 <nuxt-link tag="button" class="btn btn-primary" :to="`/${data.item.name}`">Show abilities</nuxt-link>
             </template>
         </b-table>
+        <pre>{{pokemons.results}}</pre>
     </b-container>
 
 </template>
@@ -22,7 +23,8 @@ export default {
     },
     data() {
         return {
-            loading: false
+            loading: false,
+            message: null
         };
     },
     watch: {
@@ -42,7 +44,13 @@ export default {
         }),
     },
 
+    filters: {
+    isEmpty: function (value) {
+    if (!value) return 'is empty'
+    return value
 
+  }
+}
 
 };
 </script>
