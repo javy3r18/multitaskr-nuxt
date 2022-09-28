@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 Vue.mixin({
 
