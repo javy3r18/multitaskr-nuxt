@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 Vue.filter("isEmpty", function (value) {
-    if (!value || value.length == 0) return '-No data-'
+    if (!value || value.length == 0) return 'No info'
     return value
 });
 
